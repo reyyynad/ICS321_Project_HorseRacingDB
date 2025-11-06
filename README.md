@@ -1,116 +1,104 @@
-🐎 Horse Racing Database System
+# 🐎 Horse Racing Database System – ICS321 Project 1
 
-ICS321 – Database Systems Project #1
-Due Date: October 18, 2025
-Course: ICS321, King Fahd University of Petroleum and Minerals (KFUPM)
+**Course:** ICS321 – Database Systems  
+**University:** King Fahd University of Petroleum and Minerals (KFUPM)  
+**Group Members:** Renad Elsafi & Joud Aljabri  
+**Semester:** Fall 2025 (251)
 
-📘 Project Overview
+---
 
-This project implements a Horse Racing Database System using MySQL and a Python interface (Streamlit).
-It allows two types of users — Admin and Guest — to manage and explore data about horse racing, trainers, owners, and race results.
+## 📘 Project Overview
 
-The system is based on a relational schema with tables for stables, horses, owners, trainers, races, and tracks.
-It demonstrates database design, SQL programming, procedural SQL (stored procedures, triggers), and a connected front-end interface.
+This project implements a **Horse Racing Database System** using **MySQL** as the backend and a **Python (Streamlit)** interface as the frontend.  
+It supports two user roles — **Admin** and **Guest** — to manage and explore data about **horses, stables, owners, trainers, and races**.
 
-🧩 Features
-👨‍💼 Admin Functions
+The system demonstrates:
+- Database design and normalization  
+- SQL programming (DDL and DML)  
+- Procedural SQL concepts (Stored Procedures and Triggers)  
+- Integration between Python and MySQL through Streamlit  
 
-➕ Add a new race with results
+---
 
-❌ Delete an owner and all related information (via stored procedure)
+## 🧩 Features
 
-🏇 Move a horse from one stable to another
+### 👨‍💼 Admin Functions
+- ➕ **Add a new race** with results  
+- ❌ **Delete an owner** and all related information *(via stored procedure)*  
+- 🏇 **Move a horse** from one stable to another  
+- ✅ **Approve a new trainer** to join a stable  
 
-✅ Approve a new trainer to join a stable
+### 👤 Guest Functions
+- 🔍 **Browse horses** by owner’s last name *(with trainer details)*  
+- 🏆 **View trainers** who have trained winning horses *(1st place)*  
+- 💰 **View total prize winnings** per trainer, sorted by total amount  
+- 🗺️ **List race tracks**, race counts, and total horse participants per track  
 
-👤 Guest Functions
+---
 
-🔍 View horses by owner’s last name (with trainer details)
+## 🧠 Database Schema
 
-🏆 Browse trainers who have trained winning horses
+### **Main Tables**
+- **Stable**(stableId, stableName, location, colors)  
+- **Horse**(horseId, horseName, age, gender, registration, stableId)  
+- **Owner**(ownerId, lname, fname)  
+- **Owns**(ownerId, horseId)  
+- **Trainer**(trainerId, lname, fname, stableId)  
+- **Race**(raceId, raceName, trackName, raceDate, raceTime)  
+- **RaceResults**(raceId, horseId, results, prize)  
+- **Track**(trackName, location, length)  
 
-💰 View each trainer’s total prize winnings, sorted by total amount
+### **Constraints & Relationships**
+- Each **horse** belongs to one **stable**.  
+- A **horse** can have multiple **owners** (many-to-many via `Owns`).  
+- Each **trainer** belongs to one **stable**.  
+- A **race** takes place on a **track** and can include multiple horses.  
+- **Owners** may own multiple horses across multiple stables.  
 
-🗺️ List all race tracks, race counts, and total horse participants per track
+---
 
-🧠 Database Schema
+## ⚙️ Implementation Details
 
-Main Tables:
+### 🧱 Backend
+- **Database:** MySQL  
+- **Procedural SQL:**
+  - Stored Procedure → Deletes an owner and all related information.  
+  - Trigger → Copies deleted horse info into an `old_info` table.  
 
-Stable(stableId, stableName, location, colors)
+### 💻 Frontend
+- **Language:** Python  
+- **Framework:** Streamlit  
+- **Libraries Used:**
+  - `streamlit` → User interface  
+  - `mysql-connector-python` → Database connection  
+  - `pandas` → Data handling and display  
 
-Horse(horseId, horseName, age, gender, registration, stableId)
+---
 
-Owner(ownerId, lname, fname)
+## 🧰 How to Run
 
-Owns(ownerId, horseId)
+1. **Set up the Database**
+   - Open MySQL Workbench or MySQL CLI.  
+   - Import the schema file:
+     ```bash
+     source ./racing_schema.sql
+     ```
+   - Verify that the database name in your Python connection matches the created schema.
 
-Trainer(trainerId, lname, fname, stableId)
+2. **Run the Application**
+   ```bash
+   streamlit run app/main.py
+````
 
-Race(raceId, raceName, trackName, raceDate, raceTime)
+3. **Login Options**
 
-RaceResults(raceId, horseId, results, prize)
-
-Track(trackName, location, length)
-
-Constraints & Rules:
-
-Each horse belongs to one stable.
-
-Horses and owners have many-to-many relationships via Owns.
-
-Trainers belong to one stable.
-
-Races happen on tracks and can include multiple horses.
-
-⚙️ Implementation Details
-🧱 Backend
-
-Database: MySQL
-
-Procedural SQL:
-
-Stored Procedure to delete an owner and related info
-
-Trigger to copy horse info to old_info table on deletion
-
-💻 Frontend
-
-Language: Python
-
-Libraries:
-
-streamlit (UI)
-
-mysql-connector-python (DB connection)
-
-pandas (data handling)
-
-🧰 How to Run
-
-Import racing_schema.sql into MySQL
-
-Run the app:
-
-streamlit run app/main.py
+   * Choose **Admin** or **Guest** mode from the Streamlit sidebar.
+   * Interact with the database based on your selected role.
 
 
-Choose Admin or Guest mode to interact with the database
+---
 
-📸 Sample Screens
-Admin Panel	Guest Panel
+## 📜 License
 
-	
-🏫 Credits
+This project was developed **for academic purposes only** as part of the ICS321 course and may not be used commercially without permission.
 
-Course: ICS321 – Database Systems
-
-Instructor: [Your Instructor’s Name]
-
-Student: [Your Name]
-
-Semester: Fall 2025
-
-📜 License
-
-This project is developed for academic purposes and may not be used commercially without permission.
