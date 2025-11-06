@@ -1,5 +1,7 @@
 # 🐎 Horse Racing Database System – ICS321 Project 1
 
+<img width="983" height="453" alt="Screenshot 2025-11-06 at 7 46 23 PM" src="https://github.com/user-attachments/assets/a9761532-18aa-42dd-ab58-b37574f72f07" />
+
 **Course:** ICS321 – Database Systems  
 **University:** King Fahd University of Petroleum and Minerals (KFUPM)  
 **Group Members:** Renad Elsafi & Joud Aljabri  
