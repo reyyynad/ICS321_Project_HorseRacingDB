@@ -88,7 +88,7 @@ The system demonstrates:
 2. **Run the Application**
    ```bash
    streamlit run app/main.py
-````
+
 
 3. **Login Options**
 
