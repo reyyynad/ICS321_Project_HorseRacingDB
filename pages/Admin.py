@@ -82,7 +82,7 @@ def get_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="renadroot1010",
+        password="CHANGEPASSWORD",
         database="racing"
     )
 
